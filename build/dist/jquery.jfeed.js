@@ -40,6 +40,7 @@ jQuery.getFeed = function(options) {
             dataType: (document.all) ? "text" : "xml",
             success: function(xml) {
                 var feed = new JFeed(xml);
+                feed.feedUrl = options.url;
                 if (jQuery.isFunction(options.success)) options.success(feed);
             },
             error: options.error,
@@ -55,11 +56,16 @@ function JFeed(xml) {
 
 JFeed.prototype = {
 
-    type: '',
-    version: '',
+    feedUrl: '',
     title: '',
     link: '',
+    author: '',
     description: '',
+    type: '',
+    entries: [],
+    version: '',
+    language: '',
+    updated: '',
     parse: function(xml) {
 
         if (document.all) {
@@ -70,12 +76,10 @@ JFeed.prototype = {
 
         if (jQuery('channel', xml).length == 1) {
 
-            this.type = 'rss';
             var feedClass = new JRss(xml);
 
         } else if (jQuery('feed', xml).length == 1) {
 
-            this.type = 'atom';
             var feedClass = new JAtom(xml);
         }
 
@@ -89,11 +93,12 @@ JFeedItem.prototype = {
 
     title: '',
     link: '',
+    author: '',
+    publishedDate: '',
     description: '',
     content: '',
-    updated: '',
+    categories: [],
     id: '',
-    author: '',
 	coordinates: ''
 };
 
@@ -104,10 +109,12 @@ function JAtom(xml) {
 JAtom.prototype = {
 
     _parse: function(xml) {
+        this.type = 'atom';
 
         var channel = jQuery('feed', xml).eq(0);
 
         this.version = '1.0';
+		this.type += '10';
         this.title = jQuery(channel).find('title:first').text();
         this.link = jQuery(channel).find('link:first').attr('href');
         this.description = jQuery(channel).find('subtitle:first').text();
@@ -140,7 +147,7 @@ JAtom.prototype = {
             });
 
             item.description = t.find('content').eq(0).text();
-            item.updated = t.find('updated').eq(0).text();
+            item.publishedDate = t.find('updated').eq(0).text();
             item.id = t.find('id').eq(0).text();
             item.author = t.find('author name').eq(0).text();
 
@@ -163,9 +170,15 @@ function JRss(xml) {
 JRss.prototype  = {
 
     _parse: function(xml) {
+        this.type = 'rss';
 
-        if(jQuery('rss', xml).length == 0) this.version = '1.0';
-        else this.version = jQuery('rss', xml).eq(0).attr('version');
+        if(jQuery('rss', xml).length == 0) {
+            this.version = '1.0';
+            this.type += '10';
+        } else {
+            this.version = jQuery('rss', xml).eq(0).attr('version');
+            this.type += this.version.toString().split('.').join('');
+        }
 
         var channel = jQuery('channel', xml).eq(0);
 
@@ -194,7 +207,7 @@ JRss.prototype  = {
             item.author = t.find('dc\\:creator').eq(0).text();
             if (!item.author) item.author = t.find('creator').eq(0).text();
 
-            item.updated = t.find('pubDate').eq(0).text();
+            item.publishedDate = t.find('pubDate').eq(0).text();
             item.id = t.find('guid').eq(0).text();
             item.enclosure = t.find('enclosure').attr('url');
 

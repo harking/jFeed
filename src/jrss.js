@@ -42,7 +42,7 @@ JRss.prototype  = {
             item.author = t.find('dc\\:creator').eq(0).text();
             if (!item.author) item.author = t.find('creator').eq(0).text();
 
-            item.updated = t.find('pubDate').eq(0).text();
+            item.publishedDate = t.find('pubDate').eq(0).text();
             item.id = t.find('guid').eq(0).text();
             item.enclosure = t.find('enclosure').attr('url');
 

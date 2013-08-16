@@ -40,13 +40,19 @@ Properties not found in [https://developers.google.com/feed/ Google Feed API]:
 
 == JFeedItem properties ==
 
+* <code>item.mediaGroups</code> (mrss - todo)
 * <code>item.title</code>
 * <code>item.link</code>
+* <code>item.author</code>
+* <code>item.publishedDate</code>
 * <code>item.description</code>
 * <code>item.content</code>: full text
-* <code>item.updated</code>
+* <code>item.categories</code> (tags - todo)
+
+Properties not found in Google Feed API:
+
 * <code>item.id</code>
-* <code>item.author</code>
+* <code>item.coordinates</code>
 
 Please see the provided examples for more information.
 

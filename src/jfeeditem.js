@@ -4,11 +4,12 @@ JFeedItem.prototype = {
 
     title: '',
     link: '',
+    author: '',
+    publishedDate: '',
     description: '',
     content: '',
-    updated: '',
+    categories: [],
     id: '',
-    author: '',
 	coordinates: ''
 };
 
