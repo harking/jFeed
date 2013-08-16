@@ -70,12 +70,10 @@ JFeed.prototype = {
 
         if (jQuery('channel', xml).length == 1) {
 
-            this.type = 'rss';
             var feedClass = new JRss(xml);
 
         } else if (jQuery('feed', xml).length == 1) {
 
-            this.type = 'atom';
             var feedClass = new JAtom(xml);
         }
 

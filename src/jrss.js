@@ -5,9 +5,15 @@ function JRss(xml) {
 JRss.prototype  = {
 
     _parse: function(xml) {
+        this.type = 'rss';
 
-        if(jQuery('rss', xml).length == 0) this.version = '1.0';
-        else this.version = jQuery('rss', xml).eq(0).attr('version');
+        if(jQuery('rss', xml).length == 0) {
+            this.version = '1.0';
+            this.type += '10';
+        } else {
+            this.version = jQuery('rss', xml).eq(0).attr('version');
+            this.type += this.version.toString().split('.').join('');
+        }
 
         var channel = jQuery('channel', xml).eq(0);
 

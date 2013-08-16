@@ -5,10 +5,12 @@ function JAtom(xml) {
 JAtom.prototype = {
 
     _parse: function(xml) {
+        this.type = 'atom';
 
         var channel = jQuery('feed', xml).eq(0);
 
         this.version = '1.0';
+		this.type += '10';
         this.title = jQuery(channel).find('title:first').text();
         this.link = jQuery(channel).find('link:first').attr('href');
         this.description = jQuery(channel).find('subtitle:first').text();
