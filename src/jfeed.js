@@ -40,6 +40,7 @@ jQuery.getFeed = function(options) {
             dataType: (document.all) ? "text" : "xml",
             success: function(xml) {
                 var feed = new JFeed(xml);
+                feed.feedUrl = options.url;
                 if (jQuery.isFunction(options.success)) options.success(feed);
             },
             error: options.error,
@@ -55,11 +56,16 @@ function JFeed(xml) {
 
 JFeed.prototype = {
 
-    type: '',
-    version: '',
+    feedUrl: '',
     title: '',
     link: '',
+    author: '',
     description: '',
+    type: '',
+    entries: [],
+    version: '',
+    language: '',
+    updated: '',
     parse: function(xml) {
 
         if (document.all) {

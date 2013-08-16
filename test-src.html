@@ -33,6 +33,7 @@ jQuery(function() {
 
         jQuery.getFeed({url: feedsUrls[i], success: function(feed) {
         
+            console.log('feed url: ' + feed.feedUrl);
             console.log('feed type: ' + feed.type);
             console.log('feed version: ' + feed.version);
             console.log('feed title: ' + feed.title);

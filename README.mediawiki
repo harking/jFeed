@@ -24,14 +24,19 @@ Dual licensed under the MIT (MIT-license.txt) and GPL (GPL-license.txt) licenses
 
 == JFeed properties ==
 
-* <code>feed.type</code>
-* <code>feed.version</code>
+* <code>feed.feedUrl</code>
 * <code>feed.title</code>
 * <code>feed.link</code>
+* <code>feed.author</code> (currently empty)
 * <code>feed.description</code>
+* <code>feed.type</code>
+* <code>feed.entries</code>: an array of JFeedItem
+
+Properties not found in [https://developers.google.com/feed/ Google Feed API]:
+
+* <code>feed.version</code>
 * <code>feed.language</code>
 * <code>feed.updated</code>
-* <code>feed.entries</code>: an array of JFeedItem
 
 == JFeedItem properties ==
 
