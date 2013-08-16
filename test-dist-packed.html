@@ -28,17 +28,17 @@ jQuery(function() {
             console.log('feed description: ' + feed.description);
             console.log('feed language: ' + feed.language);
             console.log('feed updated: ' + feed.updated);
-            console.log('feed items: ' + feed.items.length);
+            console.log('feed items: ' + feed.entries.length);
             
-            for(var j = 0; j < feed.items.length; j++) {
+            for(var j = 0; j < feed.entries.length; j++) {
             
-                console.log('item ' + j + ' title: ' + feed.items[j].title);
-                console.log('item ' + j + ' link: ' + feed.items[j].link);
+                console.log('item ' + j + ' title: ' + feed.entries[j].title);
+                console.log('item ' + j + ' link: ' + feed.entries[j].link);
                 console.log('item ' + j + ' description: '
-                + feed.items[j].description);
-                console.log('item ' + j + ' updated: ' + feed.items[j].updated);
-                console.log('item ' + j + ' id: ' + feed.items[j].id);
-                console.log('item ' + j + ' author: ' + feed.items[j].author);
+                + feed.entries[j].description);
+                console.log('item ' + j + ' updated: ' + feed.entries[j].updated);
+                console.log('item ' + j + ' id: ' + feed.entries[j].id);
+                console.log('item ' + j + ' author: ' + feed.entries[j].author);
             }
         }
         });

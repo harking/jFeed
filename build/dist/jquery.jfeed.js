@@ -114,7 +114,7 @@ JAtom.prototype = {
         this.language = jQuery(channel).attr('xml:lang');
         this.updated = jQuery(channel).find('updated:first').text();
 
-        this.items = new Array();
+        this.entries = new Array();
 
         var feed = this;
 
@@ -151,7 +151,7 @@ JAtom.prototype = {
               item.coordinates = [point[1], point[0]];
             }
 
-            feed.items.push(item);
+            feed.entries.push(item);
         });
     }
 };
@@ -175,7 +175,7 @@ JRss.prototype  = {
         this.language = jQuery(channel).find('language:first').text();
         this.updated = jQuery(channel).find('lastBuildDate:first').text();
 
-        this.items = new Array();
+        this.entries = new Array();
 
         var feed = this;
 
@@ -205,7 +205,7 @@ JRss.prototype  = {
               item.coordinates = [point[1], point[0]];
             }
 
-            feed.items.push(item);
+            feed.entries.push(item);
         });
     }
 };
